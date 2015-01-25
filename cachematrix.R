@@ -9,12 +9,11 @@ makeCacheMatrix <- function(x = matrix()) {
     inv_matrix <<- NULL
   }
   
-  getori_matrix <-function() x
-  
+  getOri_matrix <-function() x
   setinverse <-function(inv) inv_matrix <<-inv
   getinverse <-function() inv_matrix
 
-  list(set=set, getori_matrix = getori_matrix,
+  list(set=set, getOri_matrix = getOri_matrix,
        setinverse = setinverse,
        getinverse = getinverse)
 
@@ -27,6 +26,7 @@ makeCacheMatrix <- function(x = matrix()) {
 ## retrieve the inverse from the cache.
 
 cacheSolve <- function(x, ...) {
+  
   inv_matrix <- x$getinverse()
   
   if(!is.null(inv_matrix)) {
@@ -34,7 +34,7 @@ cacheSolve <- function(x, ...) {
     return(inv_matrix)
   }
   
-  data <- x$getori_matrix()
+  data <- x$getOri_matrix()
   inv_matrix <- solve(data, ...)
   x$setinverse(inv_matrix)
   
